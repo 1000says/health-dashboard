@@ -1,0 +1,29 @@
+/* [DASH-PAGES-001] Pages 版だけのログイン画面。色は dashboard_styles のトークンを使う（テーマに追従）。 */
+html.pages-locked, html.pages-locked body { overflow: hidden; }
+.pages-gate {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center; padding: 24px 16px;
+  background-color: var(--bg);
+  /* サマリー板と同じ方眼紙の主罫（20px 間隔・--paper-rule）を地に敷く（入口と計器盤を同じ紙でつなぐ）。
+     細罫は省く。パネルは不透明の --card なので、罫は文字のコントラストに影響しない。 */
+  background-image:
+    repeating-linear-gradient(to right, var(--paper-rule) 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(to bottom, var(--paper-rule) 0 1px, transparent 1px 20px);
+}
+.pages-gate-panel:focus { outline: none; }
+.pages-gate-hint { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12.5px; line-height: 1.7; color: var(--sub); }
+.pages-gate[hidden] { display: none; }
+.pages-gate-panel {
+  width: 100%; max-width: 420px; padding: 36px 32px 28px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: var(--sh-lg); text-align: left;
+}
+.pages-gate-mark { color: var(--accent); display: block; margin-bottom: 18px; }
+.pages-gate-title { margin: 0 0 10px; font-size: 24px; line-height: 1.3; color: var(--ink); letter-spacing: -.005em; }
+.pages-gate-lead { margin: 0 0 24px; font-size: 14px; line-height: 1.8; color: var(--sub); }
+.pages-gate-button { min-height: 44px; }
+.pages-gate-msg { margin: 16px 0 0; min-height: 1.6em; font-size: 13px; line-height: 1.7; color: var(--sub); }
+.pages-gate-msg--error { color: var(--down); }  /* .is-error はダッシュボード側のグローバル（枠付き）と衝突するので別名 */
+@media (max-width: 480px) {
+  .pages-gate-panel { padding: 28px 22px 22px; }
+}
